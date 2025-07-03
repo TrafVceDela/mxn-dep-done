@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predictor de Juegos con IA - México</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .console-box {
+        font-family: monospace;
+        background-color: #1a1a1a;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 20px #00ff88;
+        color: #00ff88;
+        height: 250px;
+        overflow-y: auto;
+      }
+      .loading-screen {
+        font-family: monospace;
+        background: #000;
+        color: #00ff88;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        flex-direction: column;
+        z-index: 50;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+      .hidden-screen {
+        display: none;
+      }
+      .game-btn {
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .game-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+      .disabled-btn {
+        cursor: not-allowed;
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-white font-sans">
+    <div id="loading" class="loading-screen">
+      <p>Cargando... Por favor espera mientras configuramos tu experiencia.</p>
+    </div>
+
+    <div id="mainContent" class="hidden-screen">
+      <header class="w-full bg-gray-800 p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-green-400">
+          Predictor IA de Betwinner
+        </h1>
+        <nav class="space-x-4">
+          <a href="#how" class="hover:text-green-400">Cómo Funciona</a>
+          <a href="#games" class="hover:text-green-400">Juegos</a>
+          <a href="#start" class="hover:text-green-400">Empezar</a>
+        </nav>
+      </header>
+
+      <section
+        class="min-h-screen flex flex-col items-center justify-center px-4 text-center"
+      >
+        <h2 class="text-3xl md:text-5xl font-bold mb-6">
+          Gana Dinero Real con Predicciones de Juegos por IA
+        </h2>
+        <p class="max-w-xl mb-8 text-gray-300">
+          Únete a miles de mexicanos que usan nuestra inteligencia artificial
+          para ganar en juegos como Aviator, Mines y Penalty. 96% de precisión
+          en señales, predicciones en tiempo real y retiros rápidos!
+        </p>
+
+        <button
+          id="startButton"
+          class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition"
+        >
+          Empieza a Ganar Ahora
+        </button>
+
+        <!-- Input Section -->
+        <div id="idInputSection" class="hidden mt-6 max-w-sm w-full">
+          <input
+            id="betIdInput"
+            type="text"
+            inputmode="numeric"
+            pattern="\d*"
+            placeholder="Tu ID de Betwinner"
+            class="w-full p-3 rounded-lg border border-gray-600 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-green-400"
+          />
+          <button
+            id="submitIdBtn"
+            class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg"
+          >
+            Enviar ID
+          </button>
+          <p id="inputError" class="hidden mt-2 text-red-500 text-sm">
+            Por favor ingresa un ID numérico válido de Betwinner.
+          </p>
+        </div>
+
+        <!-- Game Buttons Section (hidden initially) -->
+        <div id="gameButtonsSection" class="hidden mt-8 w-full max-w-md">
+          <h3 class="text-xl font-semibold mb-4">Elige Tu Juego</h3>
+          <div class="grid grid-cols-1 gap-4">
+            <a
+              href="https://mxn-aviator.vercel.app/"
+              class="game-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg"
+            >
+              Predicciones Aviator
+            </a>
+            <a
+              href="https://mxn-mines.vercel.app/"
+              class="game-btn bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg"
+            >
+              Predicciones Mines
+            </a>
+            <button
+              disabled
+              class="game-btn disabled-btn bg-gray-600 text-white font-bold py-3 px-4 rounded-lg"
+            >
+              Predicciones Penalty (Próximamente)
+            </button>
+          </div>
+          <p class="mt-4 text-gray-400 text-sm">
+            Las predicciones de Penalty estarán disponibles pronto para
+            jugadores en México.
+          </p>
+        </div>
+      </section>
+
+      <!-- Resto del contenido permanece igual -->
+      <section class="bg-gray-800 py-12 px-6 text-center">
+        <h3 class="text-2xl font-bold text-green-400 mb-6">
+          Ganadores del Día (MXN)
+        </h3>
+        <div
+          class="grid md:grid-cols-2 gap-4 text-left max-w-4xl mx-auto text-sm text-green-300"
+        >
+          <p>👤 Usuario ID: 1218473422 – 275,328 MXN</p>
+          <p>👤 Usuario ID: 9912384741 – 221,900 MXN</p>
+          <p>👤 Usuario ID: 3099234822 – 184,120 MXN</p>
+          <p>👤 Usuario ID: 1187339121 – 150,000 MXN</p>
+          <p>👤 Usuario ID: 4412900113 – 132,850 MXN</p>
+          <p>👤 Usuario ID: 8283721091 – 128,440 MXN</p>
+          <p>👤 Usuario ID: 7751937742 – 100,705 MXN</p>
+          <p>👤 Usuario ID: 5554921811 – 98,330 MXN</p>
+          <p>👤 Usuario ID: 1983238742 – 85,000 MXN</p>
+          <p>👤 Usuario ID: 3377749301 – 79,210 MXN</p>
+        </div>
+      </section>
+
+      <footer class="text-center text-gray-500 text-sm py-6">
+        © 2025 Predictor IA. No afiliado a Betwinner. Usa responsablemente.
+      </footer>
+    </div>
+
+    <script>
+      // Pantalla de carga
+      setTimeout(() => {
+        document.getElementById("loading").classList.add("hidden-screen");
+        document
+          .getElementById("mainContent")
+          .classList.remove("hidden-screen");
+      }, 3000);
+
+      // Elementos
+      const startButton = document.getElementById("startButton");
+      const idInputSection = document.getElementById("idInputSection");
+      const gameButtonsSection = document.getElementById("gameButtonsSection");
+      const submitIdBtn = document.getElementById("submitIdBtn");
+      const betIdInput = document.getElementById("betIdInput");
+      const inputError = document.getElementById("inputError");
+
+      // Mostrar campo de entrada al hacer clic en el botón
+      startButton.addEventListener("click", () => {
+        startButton.classList.add("hidden");
+        idInputSection.classList.remove("hidden");
+      });
+
+      // Lógica para enviar ID
+      submitIdBtn.addEventListener("click", () => {
+        const value = betIdInput.value.trim();
+        const isValid = /^\d{6,}$/.test(value); // al menos 6 dígitos
+
+        if (!isValid) {
+          inputError.classList.remove("hidden");
+        } else {
+          inputError.classList.add("hidden");
+          idInputSection.classList.add("hidden");
+          gameButtonsSection.classList.remove("hidden");
+        }
+      });
+
+      // Simular actualizaciones de consola
+      const consoleElement = document.getElementById("console");
+      const messages = [
+        "[SISTEMA] Analizando patrones de juego...",
+        "[IA] 3 nuevas señales detectadas",
+        "[USUARIO] ID 88475291 conectado",
+        "[PAGOS] Retiro procesado: 15,250 MXN",
+        "[ACTUALIZACIÓN] Base de datos sincronizada",
+      ];
+
+      let messageIndex = 0;
+      setInterval(() => {
+        if (messageIndex < messages.length) {
+          const p = document.createElement("p");
+          p.textContent = messages[messageIndex];
+          consoleElement.appendChild(p);
+          consoleElement.scrollTop = consoleElement.scrollHeight;
+          messageIndex++;
+        }
+      }, 2500);
+    </script>
+  </body>
+</html>
